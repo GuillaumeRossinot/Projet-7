@@ -1,6 +1,23 @@
-import getData from "../utils/fetchData.js"
+import { DisplayData } from "../utils/displayData.js"
+import { recipes } from "../data/recipes.js"
 
-async function getRecipess() {
-    const data = await getData()
-    return { recipes: data.recipes }
+const recettes = recipes;
+
+function displayRecette(recettes) {
+    const cartesRecettes = document.querySelector(".cards");
+    cartesRecettes.innerHTML = "";
+
+    recettes.forEach(recette => {
+        const creaData = new DisplayData(recette);
+        const creaCard = creaData.RecipesList();
+        cartesRecettes.appendChild(creaCard);
+    });
+
 }
+
+function init() {
+    displayRecette(recettes);
+    //console.log(displayRecette(recettes));
+}
+
+init();
